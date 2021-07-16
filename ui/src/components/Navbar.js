@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import './index.css';
 
 export default function NavbarMain(props) {
@@ -15,8 +15,7 @@ export default function NavbarMain(props) {
                         height='35'
                     />
                     </Navbar.Brand>
-                   
-                
+                                  
             </Navbar>
         </>
     );

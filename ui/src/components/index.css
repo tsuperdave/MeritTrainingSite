@@ -1,4 +1,44 @@
 /* navbar */
 .navbar, .navbar-default {
     background-color: #192F43;
+    height: 70px
+}
+
+/* log in form */
+.loginForm {
+    position: absolute;
+    width: 500px;
+    height: 400px;
+    left: calc(50% - 513px/2 + 0.5px);
+    top: calc(50% - 400px/2);
+    background: rgba(25, 47, 67, 0.15);
+    border: 1.5px solid #192F43;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.emailInput { 
+    position: absolute;
+    width: 352px;
+    height: 39px;
+    left: calc(50% - 352px/2 + 0.5px);
+    top: calc(50% - 67px/2 - 126.5px);
+    border: 1px solid #192F43;
+    border-radius: 3px;
+}
+
+.passInput {
+    position: absolute;
+    width: 352px;
+    height: 39px;
+    left: calc(50% - 352px/2 + 0.5px);
+    top: calc(50% - 67px/2 + 0.5px);
+    border: 1px solid #192F43;
+    border-radius: 3px;
+}
+
+.form.checkbox {
+    position: absolute;
+    left: calc(50% - 352px/2 + 0.5px);
+    top: calc(50% - 67px/2 + 0.5px);
 }
