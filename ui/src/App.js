@@ -1,14 +1,11 @@
-import React from 'react';
-import './App.css';
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LogInPage from "./pages/login";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Hi
-      </header>
-    </div>
+  
+    <LogInPage />
+
   );
 }
 
-export default App;
