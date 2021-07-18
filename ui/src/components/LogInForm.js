@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+// eslint-disable-next-line no-unused-vars
 import { Button, Form } from 'react-bootstrap';
 import './index.css';
 
@@ -7,42 +8,27 @@ import './index.css';
 export default function LogInForm() {
     return (
         <>
-            <Form className='loginForm'>
-                <Form.Group className="emailInput" controlId="formBasicEmail">
-                    
-                    <Form.Control type="email" placeholder="Enter email" />
-                    
-                </Form.Group>
-                <Form.Group className="passInput" controlId="formBasicPassword">
-                    
-                    <Form.Control type="password" placeholder="Enter Password" />
-                </Form.Group>
-                <Form.Check className='rememberme' type="checkbox" label="Remember Me" />                             
-            </Form>
+            <form>
 
-            <>
-            <style type='text/css'>
-                {`
-                    .btn-login {
-                        position: absolute;
-                        width: 200px;
-                        color: white;
-                        background-color: #192F43;
-                        align-items: center;
-                        justify-content: center;
-                        height: 39px;
-                        left: calc(50% - 190px/2 + 1px);
-                        top: calc(50% - 67px/2 + 126.5px);
-                    }
-                `}
-            </style>
+                <div class="loginForm">
+                    <h3>Please Sign In</h3>
+                    <input type="email" className="emailInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
 
-            <Button variant='login' type="submit">
-                Log In
-            </Button>
-            </>
-            
+                    <input type="password" className="passInput" id="exampleInputPassword1" placeholder="Password" />
+
+                    <div className="checkbox">
+                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                        <label className="rememberme" for="exampleCheck1">   Remember Me</label>
+                    </div>
+
+                    <button type="submit" className="btn-login">Submit</button>
+                </div>
+            </form>
+
+       
+
         </>
     );
 }
+
 

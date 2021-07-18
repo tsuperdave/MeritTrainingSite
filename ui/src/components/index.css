@@ -15,6 +15,7 @@
     border: 1.5px solid #192F43;
     box-sizing: border-box;
     border-radius: 4px;
+    text-align: justify;
 }
 
 .emailInput { 
@@ -22,7 +23,7 @@
     width: 352px;
     height: 39px;
     left: calc(50% - 352px/2 + 0.5px);
-    top: calc(50% - 67px/2 - 126.5px);
+    top: calc(70% - 67px/2 - 126.5px);
     border: 1px solid #192F43;
     border-radius: 3px;
 }
@@ -37,8 +38,59 @@
     border-radius: 3px;
 }
 
-.form.checkbox {
+
+.checkbox{
     position: absolute;
     left: calc(50% - 352px/2 + 0.5px);
-    top: calc(50% - 67px/2 + 0.5px);
+    top: calc(95% - 67px/2 - 126.5px);
+    border: 1px transparent #192F43;
 }
+
+.rememberme{
+    padding-inline-start: 10px;
+}
+
+
+h3{
+
+    text-align: center;
+    position: relative;
+    padding-top: 50px;
+
+}
+
+.btn-login {
+    position: absolute;
+    width: 200px;
+    color: white;
+    background-color: #192F43;
+    align-items: center;
+    justify-content: center;
+    height: 39px;
+    left: calc(50% - 190px/2 + 1px);
+    top: calc(50% - 67px/2 + 126.5px);
+}
+/* left over stylings from Login Form /*
+
+
+/* html,body { 
+	height: 100%; 
+}
+
+.global-container{
+	height:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #f5f5f5;
+}
+
+form{
+	padding-top: 10px;
+	font-size: 14px;
+	margin-top: 30px;
+} */
+
+
+
+ 
