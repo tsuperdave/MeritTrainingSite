@@ -38,20 +38,18 @@
     border-radius: 3px;
 }
 
-
-.checkbox{
+.checkbox {
     position: absolute;
     left: calc(50% - 352px/2 + 0.5px);
     top: calc(95% - 67px/2 - 126.5px);
     border: 1px transparent #192F43;
 }
 
-.rememberme{
+.rememberme {
     padding-inline-start: 10px;
 }
 
-
-h3{
+h3 {
 
     text-align: center;
     position: relative;
@@ -70,26 +68,10 @@ h3{
     left: calc(50% - 190px/2 + 1px);
     top: calc(50% - 67px/2 + 126.5px);
 }
-/* left over stylings from Login Form /*
 
 
-/* html,body { 
-	height: 100%; 
-}
 
-.global-container{
-	height:100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #f5f5f5;
-}
 
-form{
-	padding-top: 10px;
-	font-size: 14px;
-	margin-top: 30px;
-} */
 
 
 

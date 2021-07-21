@@ -1,0 +1,11 @@
+.bg {
+    opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;       
+} 
+
+.bg-layer {
+    background-color: rgba(56, 147, 212, 0.712);    
+}
