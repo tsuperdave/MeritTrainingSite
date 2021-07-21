@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 /* navbar */
 .navbar, .navbar-default {
     background-color: #192F43;
@@ -11,11 +15,12 @@
     height: 400px;
     left: calc(50% - 513px/2 + 0.5px);
     top: calc(50% - 400px/2);
-    background: rgba(25, 47, 67, 0.15);
+    background: rgba(25, 47, 67, 0.75);
     border: 1.5px solid #192F43;
     box-sizing: border-box;
     border-radius: 4px;
     text-align: justify;
+    color: azure;
 }
 
 .emailInput { 
@@ -69,8 +74,17 @@ h3 {
     top: calc(50% - 67px/2 + 126.5px);
 }
 
+.bg-layer {
+    background-color: rgba(140, 172, 207, 0.541);    
+}
 
-
+.bg {
+    opacity: 0.25;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+   
+} 
 
 
 

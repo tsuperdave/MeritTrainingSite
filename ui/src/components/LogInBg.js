@@ -6,13 +6,14 @@ const LogInBg = (props) => {
 
     return (
         <>
-        
-           <Image 
-                className='bg' 
-                fluid  
-                src={imgURL}
+            <div className='bg-layer'>
+                <Image 
+                    className='bg' 
+                    fluid  
+                    src={imgURL}
 
-            /> 
+                /> 
+            </div>
         </>
     )
 }
