@@ -7,9 +7,9 @@ import { AuthorizationProvider } from "./auth";
 
 export default function App() {
   return (
-  <AuthorizationProvider>
+  // <AuthorizationProvider>
     <LogInPage />
-  </AuthorizationProvider>     
+  // </AuthorizationProvider>     
   );
 }
 

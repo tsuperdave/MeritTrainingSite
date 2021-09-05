@@ -25,7 +25,7 @@ export const requireAuth = (Component) => {
       useEffect(() => {
         // Redirect if not signed in
         if (auth.isLoggedIn === false) {
-          history.replace("/home");
+          history.replace("/signin");
         }
       }, [auth]);
   
