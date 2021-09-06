@@ -76,13 +76,14 @@ h3 {
 }
 
 .btn-login-google {
+    font-size: x-small;
     position: absolute;
-    width: 200px;
+    width: 120px;
     color: white;
     background-color: #192F43;
     align-items: center;
     justify-content: center;
-    height: 39px;
+    height: 25px;
     left: calc(50% - 190px/2 + 1px);
     top: calc(60% - 67px/3 + 126.5px);
     border-radius: 6px;

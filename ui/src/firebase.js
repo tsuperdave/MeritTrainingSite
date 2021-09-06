@@ -13,7 +13,7 @@ const config = {
 
 
 const app = initializeApp(config);
-export const auth = getAuth();
+export const fbAuth = getAuth();
 export const googleProvider = new GoogleAuthProvider();
 
 export default app;

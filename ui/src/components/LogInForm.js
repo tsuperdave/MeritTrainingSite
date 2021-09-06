@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './index.css';
-import { auth, googleProvider } from '../firebase'
-import { signInWithPopup } from 'firebase/auth'
+import { AuthorizationContext } from '../auth'
+import { fbAuth, googleProvider } from '../firebase'
+import { signInWithPopup, signInWithRedirect } from "firebase/auth";
 
-const LogInForm = () => {
+export default function LogInForm() {
+
+    const [auth, setAuth] = useContext(AuthorizationContext);
 
     const googleLogin = async e => {
-        // e.preventDefault();
+        e.preventDefault();
         
-        try {
-            const res = await auth.signInWithPopup(googleProvider); 
-        } catch(err) {
-            console.log(err);
-        }     
+        
+        const res = await signInWithRedirect(auth, googleProvider)
+        .then((res) => {
+            // const cred = googleProvider.credentialFromResult(res);
+            // console.log(cred);
+
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+    
         
     };
 
@@ -31,7 +40,7 @@ const LogInForm = () => {
                             <label className="rememberme" htmlFor="exampleCheck1">   Remember Me</label>
                         </div>
 
-                        <button type="submit" className="btn-login">Submit</button>
+                        <button type="submit" className="btn-login">Log In</button>
                         <button type="submit" className="btn-login-google" onClick={googleLogin}>Log In With Google</button>                    
                     </div>
             </form>            
@@ -40,6 +49,5 @@ const LogInForm = () => {
     );
 }
 
-export default LogInForm;
 
 
