@@ -1,27 +1,40 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import './index.css';
 import { AuthorizationContext } from '../auth'
 import { fbAuth, googleProvider } from '../firebase'
-import { signInWithPopup, signInWithRedirect } from "firebase/auth";
+import { signInWithPopup, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
+import { Redirect, useHistory } from 'react-router';
+
 
 export default function LogInForm() {
 
-    const [auth, setAuth] = useContext(AuthorizationContext);
+    const [user, setUser] = useContext(AuthorizationContext);
+    const history = useHistory();
+    
 
-    const googleLogin = async e => {
+    const login = async e => {
         e.preventDefault();
         
-        
-        const res = await signInWithRedirect(auth, googleProvider)
+        // for desktop
+        await signInWithPopup(fbAuth, googleProvider)
         .then((res) => {
-            // const cred = googleProvider.credentialFromResult(res);
-            // console.log(cred);
-
+            setUser({
+                name: res.user,
+                role: 'Test',
+                isLoggedIn: true
+            })
+            console.log("res: " + res)
+            console.log("user: " + res.user)
+            
         })
         .catch((e) => {
-            console.log(e);
+            const code = e.code;
+            const msg = e.message;
+            const email = e.email;
+            // const cred = googleProvider.credentialFromError(e);
+            console.log(code + " " + msg + " " + email);
         })
-    
+
         
     };
 
@@ -40,8 +53,8 @@ export default function LogInForm() {
                             <label className="rememberme" htmlFor="exampleCheck1">   Remember Me</label>
                         </div>
 
-                        <button type="submit" className="btn-login">Log In</button>
-                        <button type="submit" className="btn-login-google" onClick={googleLogin}>Log In With Google</button>                    
+                        <button type="submit" className="btn-login" onClick={login}>Log In</button>
+                        {/* <button type="submit" className="btn-login-google">Log In With Google</button>                     */}
                     </div>
             </form>            
             
