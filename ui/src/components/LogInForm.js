@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './index.css';
 import { AuthorizationContext } from '../auth'
 import { fbAuth, googleProvider } from '../firebase'
-import { signInWithPopup, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
+import { signInWithPopup, signInWithRedirect, onAuthStateChanged, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
 import { Redirect, useHistory } from 'react-router';
 
 
@@ -12,30 +12,31 @@ export default function LogInForm() {
     const history = useHistory();
     
 
-    const login = async e => {
+    const login = e => {
         e.preventDefault();
         
-        // for desktop
-        await signInWithPopup(fbAuth, googleProvider)
+        signInWithPopup(fbAuth, googleProvider)
         .then((res) => {
-            setUser({
-                name: res.user,
-                role: 'Test',
-                isLoggedIn: true
-            })
-            console.log("res: " + res)
-            console.log("user: " + res.user)
-            
+            const token = res.credential.accessToken;
+            const user = res.user;
+            console.log(res);
+            console.log(token);
+            console.log(user);
         })
         .catch((e) => {
-            const code = e.code;
-            const msg = e.message;
-            const email = e.email;
-            // const cred = googleProvider.credentialFromError(e);
-            console.log(code + " " + msg + " " + email);
-        })
-
+            console.log(e);
+        });
         
+        fbAuth.onAuthStateChanged((user) => {
+            if(user) {
+                console.log("User signed in");
+                console.log(user);
+            } else {
+                console.log("No User");
+            }
+            
+        });
+          
     };
 
     return (

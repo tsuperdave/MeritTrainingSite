@@ -5,8 +5,8 @@ export const AuthorizationContext = createContext();
 
 export const AuthorizationProvider = (props) => {
     const [user, setUser] = useState({
-      name: '',
-      role: '',
+      token: '',
+      user: '',
       isLoggedIn: false
 })
     return (
