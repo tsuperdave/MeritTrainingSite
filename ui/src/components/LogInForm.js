@@ -1,18 +1,43 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import './index.css';
 import { AuthorizationContext } from '../auth'
 import { fbAuth, googleProvider } from '../firebase'
-import { signInWithPopup, signInWithRedirect, onAuthStateChanged, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
-import { Redirect, useHistory } from 'react-router';
+import { signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { useHistory } from 'react-router';
 
 
 export default function LogInForm() {
 
+    const emailRef = useRef();
+    const passwordRef = useRef();
     const [user, setUser] = useContext(AuthorizationContext);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false); 
     const history = useHistory();
+
+    const login = async e => {
+        e.preventDefault();
+
+        signInWithEmailAndPassword(fbAuth, emailRef, passwordRef)
+        .then((userCred) => {
+            console.log(userCred);
+        })
+        .catch((e) => {
+            console.log(e.code);
+            console.log(e.message);
+        })
+
+        // onAuthStateChanged(fbAuth, (user) => {
+        //     if(user) {
+        //         console.log(user.uid)
+        //     } else {
+        //         console.log("not logged in");
+        //     }
+        // })
+    }
     
 
-    const login = e => {
+    const googleLogin = e => {
         e.preventDefault();
         
         signInWithPopup(fbAuth, googleProvider)
@@ -45,9 +70,9 @@ export default function LogInForm() {
             <form>
                     <div className="loginForm">
                         <h3>Please Sign In</h3>
-                        <input type="email" className="emailInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" />
+                        <input type="email" className="emailInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" ref={emailRef}/>
 
-                        <input type="password" className="passInput" id="exampleInputPassword1" placeholder="Password" />
+                        <input type="password" className="passInput" id="exampleInputPassword1" placeholder="Password" ref={passwordRef}/>
 
                         <div className="checkbox">
                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
@@ -55,7 +80,7 @@ export default function LogInForm() {
                         </div>
 
                         <button type="submit" className="btn-login" onClick={login}>Log In</button>
-                        {/* <button type="submit" className="btn-login-google">Log In With Google</button>                     */}
+                        <button type="submit" className="btn-login-google" onClick={googleLogin}>Log In With Google</button>                    
                     </div>
             </form>            
             
