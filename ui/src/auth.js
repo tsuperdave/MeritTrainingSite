@@ -5,8 +5,12 @@ export const AuthorizationContext = createContext();
 
 export const AuthorizationProvider = (props) => {
     const [user, setUser] = useState({
+      uid: '',
+      token: '',
       email: '',
-      username: '',
+      displayName: '',
+      phoneNumber: '',
+      photoURL: '',
       isLoggedIn: false
 })
     return (
@@ -21,6 +25,8 @@ export const requireAuth = (Component) => {
       // Get authenticated user
       const [user, setUser] = useContext(AuthorizationContext);
       const history = useHistory();
+
+      console.log("user data in Auth Provider" + user.isLoggedIn)
       
       useEffect(() => {
         // Redirect if not signed in

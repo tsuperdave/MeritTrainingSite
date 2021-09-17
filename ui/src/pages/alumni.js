@@ -1,9 +1,14 @@
 import React from 'react'
+import { requireAuth } from '../auth';
 
-export default function AlumniPage(props) {
+const AlumniPage = (props) => {
+
+
     return(
         <>
             <h1>Alumni Page</h1>
         </>
     );
 }
+
+export default AlumniPage;
