@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 
 const config = {
     apiKey: process.env.REACT_APP_FB_API_KEY,
@@ -14,6 +15,7 @@ const config = {
 
 const app = initializeApp(config);
 export const fbAuth = getAuth();
+export const fbAnalytics = getAnalytics();
 export const googleProvider = new GoogleAuthProvider();
 
 export default app;

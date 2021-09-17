@@ -8,32 +8,37 @@ import { useHistory } from 'react-router';
 
 export default function LogInForm() {
 
-    const emailRef = useRef();
-    const passwordRef = useRef();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [user, setUser] = useContext(AuthorizationContext);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false); 
     const history = useHistory();
 
-    const login = async e => {
+    const handleSubmit = e => {
         e.preventDefault();
 
-        signInWithEmailAndPassword(fbAuth, emailRef, passwordRef)
-        .then((userCred) => {
-            console.log(userCred);
+        signInWithEmailAndPassword(fbAuth, email, password)
+        .then((userCredential) => {
+            const u = userCredential.user;
+            
+            console.log("User info: " + u);
         })
-        .catch((e) => {
+        .catch((error) => {
             console.log(e.code);
             console.log(e.message);
         })
 
         // onAuthStateChanged(fbAuth, (user) => {
         //     if(user) {
-        //         console.log(user.uid)
+        //         console.log(user)
         //     } else {
         //         console.log("not logged in");
         //     }
         // })
+        console.log("User logged in")
+
+        
     }
     
 
@@ -52,9 +57,8 @@ export default function LogInForm() {
             console.log(e);
         });
         
-        fbAuth.onAuthStateChanged((user) => {
+        onAuthStateChanged(fbAuth, (user) => {
             if(user) {
-                console.log("User signed in");
                 console.log(user);
             } else {
                 console.log("No User");
@@ -67,22 +71,24 @@ export default function LogInForm() {
     return (
         <>
             
-            <form>
+            <form onSubmit={handleSubmit}>
                     <div className="loginForm">
                         <h3>Please Sign In</h3>
-                        <input type="email" className="emailInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" ref={emailRef}/>
-
-                        <input type="password" className="passInput" id="exampleInputPassword1" placeholder="Password" ref={passwordRef}/>
+                            
+                        <input type="email" className="emailInput" aria-describedby="emailHelp" placeholder="Enter Email" onChange={e => setEmail(e.target.value)}/>   
+                        <input type="password" className="passInput" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
 
                         <div className="checkbox">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                            <input type="checkbox" className="form-check-input"/>
                             <label className="rememberme" htmlFor="exampleCheck1">   Remember Me</label>
                         </div>
 
-                        <button type="submit" className="btn-login" onClick={login}>Log In</button>
-                        <button type="submit" className="btn-login-google" onClick={googleLogin}>Log In With Google</button>                    
+                        <button type="submit" className="btn-login">Log In</button>
+                                            
                     </div>
-            </form>            
+            </form>
+
+            <button className="btn-login-google" onClick={googleLogin}>Log In With Google</button>            
             
         </>
     );
