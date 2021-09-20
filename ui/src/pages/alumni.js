@@ -3,7 +3,6 @@ import { requireAuth } from '../auth';
 
 const AlumniPage = (props) => {
 
-
     return(
         <>
             <h1>Alumni Page</h1>
@@ -11,4 +10,4 @@ const AlumniPage = (props) => {
     );
 }
 
-export default AlumniPage;
+export default requireAuth(AlumniPage);

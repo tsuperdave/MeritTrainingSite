@@ -4,8 +4,8 @@ import AlumniPage from './pages/alumni';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import './index.css';
 import { AuthorizationProvider } from "./auth";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Redirect }from 'react-router'
+import { Switch, Route, Router } from './customRouter';
+import { Redirect } from 'react-router'
 
 
 export default function App() {
@@ -20,7 +20,6 @@ export default function App() {
         <Route exact path='/alumni' component={AlumniPage} />
       </Switch>
     </Router>
-    <LogInPage />
   </AuthorizationProvider>     
   );
 }

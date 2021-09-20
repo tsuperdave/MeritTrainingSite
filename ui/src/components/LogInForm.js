@@ -3,7 +3,7 @@ import './index.css';
 import { AuthorizationContext } from '../auth'
 import { fbAuth, googleProvider } from '../firebase'
 import { signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { Redirect } from 'react-router';
+import { history } from '../customRouter';
 
 
 export default function LogInForm() {
@@ -13,10 +13,10 @@ export default function LogInForm() {
     const [user, setUser] = useContext(AuthorizationContext);
     // const [loading, setLoading] = useState(false); 
 
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault();
 
-        await signInWithEmailAndPassword(fbAuth, email, password)
+        signInWithEmailAndPassword(fbAuth, email, password)
         .then((userCredential) => {
             const u = userCredential.user;
 
@@ -36,10 +36,13 @@ export default function LogInForm() {
                 displayName: 'Site Admin',
                 phoneNumber: '1234567890',
                 photoURL: 'https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/983/original/merit-20america-20logo.jpg',
+                role: 'admin',
                 isLoggedIn: true
-            }); 
-            
-            
+            });
+
+            // after log in, redirect based on role
+            loginRedirect(user.role);
+               
             
         })
         .catch((error) => {
@@ -55,8 +58,6 @@ export default function LogInForm() {
             }
         })    
 
-        reRoute();
-
         // onAuthStateChanged(fbAuth, (u) => {
         //     if(u) {
         //         console.dir(u);
@@ -68,15 +69,13 @@ export default function LogInForm() {
     };
     
     // Add some routing post log in
-    const reRoute = () => {
-        if(user.isLoggedIn) {
-            console.log("reroute reached");
-            return <Redirect to='/alumni' />
-        }       
+    const loginRedirect = (role) => {
+        // add switch case based on role 
+        console.log("Redirect on role")
+        history.push('/alumni');     
     }
 
-    console.log("User logged in after sign in: " + user.isLoggedIn)
-    reRoute();
+    
 
     const googleLogin = e => {
         e.preventDefault();

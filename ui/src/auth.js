@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom';
+import { history } from './customRouter'
 
 export const AuthorizationContext = createContext();
 
@@ -11,6 +11,7 @@ export const AuthorizationProvider = (props) => {
       displayName: '',
       phoneNumber: '',
       photoURL: '',
+      role: '',
       isLoggedIn: false
 })
     return (
@@ -24,15 +25,11 @@ export const requireAuth = (Component) => {
     return (props) => {
       // Get authenticated user
       const [user, setUser] = useContext(AuthorizationContext);
-      const history = useHistory();
-
-      console.log("user data in Auth Provider" + user.isLoggedIn)
       
       useEffect(() => {
         // Redirect if not signed in
         if (user.isLoggedIn === false) {
           history.replace("/login");
-          console.log("history redirect from auth.js")
         }
       }, [user]);
   
