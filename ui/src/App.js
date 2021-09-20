@@ -17,7 +17,9 @@ export default function App() {
           <Redirect to='/login' />
         </Route>
         <Route exact path='/login' component={LogInPage} />
+
         <Route exact path='/alumni' component={AlumniPage} />
+        
       </Switch>
     </Router>
   </AuthorizationProvider>     

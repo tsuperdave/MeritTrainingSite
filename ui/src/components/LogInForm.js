@@ -20,14 +20,6 @@ export default function LogInForm() {
         .then((userCredential) => {
             const u = userCredential.user;
 
-            // console.dir(u)
-            // console.log("UID: " + u.uid);
-            // console.log("token: " + u.stsTokenManager.accessToken);
-            // console.log("email: " + u.email);
-            // console.log("displayName: " + u.displayName);
-            // console.log("phone: " + u.phoneNumber);
-            // console.log("photoURL: " + u.providerData[0].photoURL)
-
             //setUser
             setUser({
                 uid: u.uid,
