@@ -50,14 +50,7 @@ export default function LogInForm() {
             }
         })    
 
-        // onAuthStateChanged(fbAuth, (u) => {
-        //     if(u) {
-        //         console.dir(u);
-        //     } else {
-        //         console.log("Not logged in");
-        //     }
-        // })
-        
+              
     };
     
     // Add some routing post log in
@@ -67,31 +60,33 @@ export default function LogInForm() {
         history.push('/alumni');     
     }
 
-    
-
     const googleLogin = e => {
         e.preventDefault();
         
         signInWithPopup(fbAuth, googleProvider)
         .then((res) => {
-            const token = res.credential.accessToken;
-            const user = res.user;
-            console.log(res);
-            console.log(token);
-            console.log(user);
+            const u = res.user;
+            console.dir(res)
+            //setUser
+            setUser({
+                uid: u.uid,
+                token: u.accessToken,
+                email: u.email,
+                displayName: u.displayName,
+                phoneNumber: u.phoneNumber,
+                photoURL: 'https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/983/original/merit-20america-20logo.jpg',
+                role: 'admin',
+                isLoggedIn: true
+            });   
+
+            // after log in, redirect based on role
+            loginRedirect(user.role);
         })
         .catch((e) => {
             console.log(e);
         });
         
-        onAuthStateChanged(fbAuth, (user) => {
-            if(user) {
-                console.log(user);
-            } else {
-                console.log("No User");
-            }
-            
-        });
+        console.log("Google Log In");
           
     };
 
