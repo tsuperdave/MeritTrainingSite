@@ -14,8 +14,8 @@ export default function LogInPage(props) {
 
             <NavbarMain 
                 fixed='top'    
-                variant='dark'
-                expand='lg'
+                // variant='dark'
+                expand='md'
                 logo={MAlogo}
             />
                     

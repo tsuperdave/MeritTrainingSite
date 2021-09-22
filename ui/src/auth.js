@@ -13,7 +13,8 @@ export const AuthorizationProvider = (props) => {
       photoURL: '',
       role: '',
       isLoggedIn: false
-})
+    });
+    
     return (
         <AuthorizationContext.Provider value={[user, setUser]}>
             {props.children}

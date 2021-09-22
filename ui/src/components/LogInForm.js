@@ -31,6 +31,7 @@ export default function LogInForm() {
                 role: 'admin',
                 isLoggedIn: true
             });
+            
 
             // after log in, redirect based on role
             loginRedirect(user.role);
@@ -77,7 +78,8 @@ export default function LogInForm() {
                 photoURL: 'https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/983/original/merit-20america-20logo.jpg',
                 role: 'admin',
                 isLoggedIn: true
-            });   
+            });  
+                  
 
             // after log in, redirect based on role
             loginRedirect(user.role);

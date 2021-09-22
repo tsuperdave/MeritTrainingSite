@@ -1,6 +1,7 @@
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LogInPage from "./pages/login";
 import AlumniPage from './pages/alumni';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import './index.css';
 import { AuthorizationProvider } from "./auth";
