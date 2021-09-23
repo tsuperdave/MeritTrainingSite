@@ -4,7 +4,7 @@ import { AuthorizationContext } from '../auth'
 import { database, fbAuth, googleProvider } from '../firebase'
 import { signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { history } from '../customRouter';
-import { ref, child, get } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 
 export default function LogInForm() {
@@ -64,13 +64,11 @@ export default function LogInForm() {
 
     const getData = () => {
         
-        const dbRef = ref(database);
-        get(child(dbRef, 'userRoles'))
-        .then((snapshot) => {
-            snapshot ? console.log(snapshot) : console.log("No data");
-        }).catch((e) => {
-            console.log(e);
-        })
+        const dbRef = ref(database, '/users'); 
+        onValue(dbRef, (snapshot) => {
+            const data = snapshot.val();
+            console.dir(data);
+        });
 
     }
 
@@ -92,7 +90,7 @@ export default function LogInForm() {
                 role: 'admin',
                 isLoggedIn: true
             });  
-            getData();      
+            getData();     
 
             // after log in, redirect based on role
             loginRedirect(user.role);
@@ -100,8 +98,6 @@ export default function LogInForm() {
         .catch((e) => {
             console.log(e);
         });
-        
-        console.log("Google Log In");
           
     };
 
@@ -125,7 +121,8 @@ export default function LogInForm() {
                     </div>
             </form>
 
-            <button className="btn-login-google" onClick={googleLogin}>Log In With Google</button>            
+            <button className="btn-login-google" onClick={googleLogin}>Log In With Google</button> 
+            <button className="btn-get-data" onClick={getData}>getData Test</button>           
             
         </>
     );

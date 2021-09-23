@@ -89,6 +89,20 @@ h3 {
     border-radius: 6px;
 }
 
+.btn-get-data {
+    font-size: x-small;
+    position: absolute;
+    width: 120px;
+    color: white;
+    background-color: #192F43;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    left: calc(50% - 190px/2 + 1px);
+    top: calc(70% - 67px/2 + 126.5px);
+    border-radius: 6px;
+}
+
 .btn-login:hover {    
     background-color: rgb(23, 85, 143);
 }
