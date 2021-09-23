@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import './index.css';
 import { AuthorizationContext } from '../auth'
-import { fbAuth, googleProvider } from '../firebase'
+import { database, fbAuth, googleProvider } from '../firebase'
 import { signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { history } from '../customRouter';
+import { ref, child, get } from "firebase/database";
 
 
 export default function LogInForm() {
@@ -61,13 +62,25 @@ export default function LogInForm() {
         history.push('/alumni');     
     }
 
+    const getData = () => {
+        
+        const dbRef = ref(database);
+        get(child(dbRef, 'userRoles'))
+        .then((snapshot) => {
+            snapshot ? console.log(snapshot) : console.log("No data");
+        }).catch((e) => {
+            console.log(e);
+        })
+
+    }
+
     const googleLogin = e => {
         e.preventDefault();
         
         signInWithPopup(fbAuth, googleProvider)
         .then((res) => {
             const u = res.user;
-            console.dir(res)
+            
             //setUser
             setUser({
                 uid: u.uid,
@@ -79,7 +92,7 @@ export default function LogInForm() {
                 role: 'admin',
                 isLoggedIn: true
             });  
-                  
+            getData();      
 
             // after log in, redirect based on role
             loginRedirect(user.role);
